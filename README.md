@@ -20,11 +20,12 @@ This project demonstrates how to set up Ansible on an AWS EC2 instance (Control 
 2. Connected to Control Node using SSH
    ssh -i my-key.pem ubuntu@192.168.10.71
 
-4. Installed Ansible on Control Node
+3. Installed Ansible on Control Node
    sudo apt update
    sudo apt install ansible -y
 
-6. Configured SSH access to Managed Node
+4. Configured SSH access to Managed Node
+   
    a. Copy .pem key to Control Node (from local)
      ```bash
      scp -i Linux.pem Linux.pem ubuntu@192.168.10.71:/home/ubuntu/
@@ -38,7 +39,8 @@ This project demonstrates how to set up Ansible on an AWS EC2 instance (Control 
      ssh -i Linux.pem ubuntu@192.168.10.247
      ```
      
-8. Created inventory file
+5. Created inventory file
+   
    a. Create Inventory File
      ```bash
      nano inventory.ini
@@ -49,19 +51,19 @@ This project demonstrates how to set up Ansible on an AWS EC2 instance (Control 
      192.168.10.247 ansible_user=ubuntu ansible_ssh_private_key_file=/home/ubuntu/Linux.pem
      ```
 
-10. Tested connection using:
+6. Tested connection using:
 
    ```bash
    ansible -i inventory.ini web -m ping
    ```
 
-11. Ran ad-hoc command:
+7. Ran ad-hoc command:
 
    ```bash
    ansible -i inventory.ini web -m command -a "uptime"
    ```
 
-11. Created and executed playbook to install Apache
+8. Created and executed playbook to install Apache
 
 ---
 
