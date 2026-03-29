@@ -27,7 +27,7 @@ This project demonstrates how to set up Ansible on an AWS EC2 instance (Control 
 6. Configured SSH access to Managed Node
    a. Copy .pem key to Control Node (from local)
      ```bash
-     scp -i Linux.pem Linux.pem ubuntu@<control-node-public-ip>:/home/ubuntu/
+     scp -i Linux.pem Linux.pem ubuntu@192.168.10.71:/home/ubuntu/
      ```
    b. Set Correct Permissions (on Control Node)
      ```bash
