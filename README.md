@@ -18,11 +18,15 @@ This project demonstrates how to set up Ansible on an AWS EC2 instance (Control 
 
 
 2. Connected to Control Node using SSH
+   ```bash
    ssh -i my-key.pem ubuntu@192.168.10.71
+   ```
 
 3. Installed Ansible on Control Node
+   ```bash
    sudo apt update
    sudo apt install ansible -y
+   ```
 
 4. Configured SSH access to Managed Node
    
