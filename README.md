@@ -11,29 +11,57 @@ This project demonstrates how to set up Ansible on an AWS EC2 instance (Control 
 1. Created AWS EC2 instances:
 
    * Control Node
+     <img width="1918" height="867" alt="image" src="https://github.com/user-attachments/assets/fd8c6b2f-57b0-43b9-bdbb-cc2b2de602ab" />
+
    * Managed Node
+     <img width="1918" height="867" alt="image" src="https://github.com/user-attachments/assets/31c2907d-70e1-4e16-a3a0-7acc73495214" />
+
 
 2. Connected to Control Node using SSH
+   ssh -i my-key.pem ubuntu@192.168.10.71
 
-3. Installed Ansible on Control Node
+4. Installed Ansible on Control Node
+   sudo apt update
+   sudo apt install ansible -y
 
-4. Configured SSH access to Managed Node
+6. Configured SSH access to Managed Node
+   a. Copy .pem key to Control Node (from local)
+     ```bash
+     scp -i Linux.pem Linux.pem ubuntu@<control-node-public-ip>:/home/ubuntu/
+     ```
+   b. Set Correct Permissions (on Control Node)
+     ```bash
+     chmod 400 Linux.pem
+     ```
+   c. Connect to Managed Node (from Control Node)
+     ```bash
+     ssh -i Linux.pem ubuntu@192.168.10.247
+     ```
+     
+8. Created inventory file
+   a. Create Inventory File
+     ```bash
+     nano inventory.ini
+     ```
+   b. Add Content in the file
+     ```bash
+     [web]
+     192.168.10.247 ansible_user=ubuntu ansible_ssh_private_key_file=/home/ubuntu/Linux.pem
+     ```
 
-5. Created inventory file
-
-6. Tested connection using:
+10. Tested connection using:
 
    ```bash
    ansible -i inventory.ini web -m ping
    ```
 
-7. Ran ad-hoc command:
+11. Ran ad-hoc command:
 
    ```bash
    ansible -i inventory.ini web -m command -a "uptime"
    ```
 
-8. Created and executed playbook to install Apache
+11. Created and executed playbook to install Apache
 
 ---
 
